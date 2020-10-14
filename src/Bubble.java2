@@ -1,0 +1,73 @@
+import processing.core.PApplet;
+
+/* YOU SHOULD COMPLETE AND UNDERSTAND THE Ball.java PART OF THIS PROJECT FIRST */
+/* DON'T FORGET TO RENAME THIS FILE TO Bubble.java WHEN YOU ARE READY TO TEST IT */
+
+class Bubble {
+    /**
+     * SUMMATIVE REQUIRED Add reasonable default values for all that are missing
+     * them. Bubbles should, by default, rise UPWARD over time.
+     */
+    private Sketch sketch;
+    private float diameter;
+    private float x;
+    private float y;
+    private int col; 
+    private int borderColor; 
+    private float speedY;
+    private float speedX;
+
+    /**
+     * SUMMATIVE REQUIRED Add two constructors for the Bubble class, one that is
+     * mostly default and one that allows custom values for whichever you want to be
+     * able to change
+     * 
+     * You can use `sketch.color(255, 255, 255, 150)` to create a transluscent white color
+     * 
+     * SUMMATIVE OPTIONAL Make it so that some of your constructors (including
+     * possibly the default) use a random number to set the position and/or speed of
+     * the object.
+     * 
+     * SUMMATIVE OPTIONAL Add more than two constructors for varying levels of
+     * customization
+     */
+
+    /*
+     * SUMMATIVE REQUIRED Add a method called `getRadius()` that returns a float
+     * representing the radius of the bubble
+     */
+
+    /** Draws the bubble. */
+    public void drawBubble() {
+        sketch.stroke(borderColor);
+        sketch.fill(col);
+        sketch.ellipse(x, y, diameter, diameter);
+    }
+
+    /** Moves the balls. */
+    public void moveBubble() {
+
+        /*
+         * SUMMATIVE OPTIONAL Tweak this method so that the bubbles don't bounce off the
+         * left and right sides, but loop around to the other side instead.
+         */
+
+        /* SUMMATIVE OPTIONAL Tweak bubble movement so that it moves more randomly */
+
+        /* If the bubble is on the left or right edge, bounce! */
+        if (x > (sketch.width - getRadius()) || x < getRadius()) {
+            speedX = -speedX;
+        }
+        /* If the ball goes off the top, move it to the bottom. */
+        if (y < (-getRadius())) {
+            y = sketch.height + getRadius();
+        }
+        /* If the bubble goes off the bottom, move it to the top. */
+        if (y > (sketch.height + getRadius())) {
+            y = -getRadius();
+        }
+        x += speedX;
+        y += speedY;
+
+    }
+}
